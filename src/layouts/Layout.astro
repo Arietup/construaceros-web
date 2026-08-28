@@ -11,9 +11,10 @@ interface Props {
   descripcion?: string;
   imagen?: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
-const { titulo, descripcion = EMPRESA.descripcion, imagen, jsonLd } = Astro.props;
+const { titulo, descripcion = EMPRESA.descripcion, imagen, jsonLd, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,7 +26,7 @@ const { titulo, descripcion = EMPRESA.descripcion, imagen, jsonLd } = Astro.prop
     <!-- Marca que hay JavaScript ANTES del primer pintado. El CSS oculta los
          .reveal solo bajo .js, así que sin JavaScript el contenido siempre se ve. -->
     <script is:inline>document.documentElement.classList.add('js');</script>
-    <Seo titulo={titulo} descripcion={descripcion} imagen={imagen} jsonLd={jsonLd} />
+    <Seo titulo={titulo} descripcion={descripcion} imagen={imagen} jsonLd={jsonLd} noindex={noindex} />
   </head>
   <body class="bg-carbon text-humo font-cuerpo antialiased">
     <a

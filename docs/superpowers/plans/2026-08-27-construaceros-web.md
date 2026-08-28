@@ -2231,15 +2231,22 @@ interface Props {
   descripcion: string;
   imagen?: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
-const { titulo, descripcion, imagen, jsonLd } = Astro.props;
+const { titulo, descripcion, imagen, jsonLd, noindex } = Astro.props;
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
 const imagenAbsoluta = imagen ? new URL(imagen, Astro.site).href : undefined;
+/**
+ * JSON.stringify no escapa `<`, asi que un `</script>` dentro de cualquier
+ * texto cerraria la etiqueta antes de tiempo y volcaria HTML crudo.
+ */
+const jsonLdSeguro = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : undefined;
 ---
 
 <title>{titulo}</title>
 <meta name="description" content={descripcion} />
+{noindex && <meta name="robots" content="noindex" />}
 <link rel="canonical" href={canonica} />
 
 <meta property="og:type" content="website" />
@@ -2252,7 +2259,7 @@ const imagenAbsoluta = imagen ? new URL(imagen, Astro.site).href : undefined;
 
 <meta name="twitter:card" content={imagenAbsoluta ? 'summary_large_image' : 'summary'} />
 
-{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+{jsonLdSeguro && <script type="application/ld+json" set:html={jsonLdSeguro} />}
 ```
 
 - [x] **Step 2: Conectar el layout**
@@ -2269,16 +2276,17 @@ interface Props {
   descripcion?: string;
   imagen?: string;
   jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
-const { titulo, descripcion = EMPRESA.descripcion, imagen, jsonLd } = Astro.props;
+const { titulo, descripcion = EMPRESA.descripcion, imagen, jsonLd, noindex } = Astro.props;
 ---
 ```
 
 En el `<head>`, reemplazar `<title>{titulo}</title>` y `<meta name="description" … />` por:
 
 ```astro
-    <Seo titulo={titulo} descripcion={descripcion} imagen={imagen} jsonLd={jsonLd} />
+    <Seo titulo={titulo} descripcion={descripcion} imagen={imagen} jsonLd={jsonLd} noindex={noindex} />
 ```
 
 - [x] **Step 3: Añadir LocalBusiness a la landing**
