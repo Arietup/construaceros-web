@@ -14,7 +14,7 @@
 
 - Idioma único: **español**. Todo el texto visible, los nombres de archivo de contenido y las URLs en español, sin acentos en las URLs.
 - Node 22. Fijado en `.node-version` para que Render use la misma versión.
-- Paleta exacta: `carbon #0B0B0C`, `grafito #16181B`, `acero #C7CBD1`, `humo #F4F5F7`, `ambar #F2B705`. El ámbar solo en llamadas a la acción y detalles puntuales.
+- Paleta exacta: `carbon #0B0B0C`, `grafito #16181B`, `acero #C7CBD1`, `humo #F4F5F7`, `ambar #F2B705`. El ámbar solo en llamadas a la acción y detalles puntuales. Única excepción aprobada: los mensajes de error del formulario usan `text-red-400`, porque el éxito ya ocupa el ámbar y ambos estados deben distinguirse de un vistazo.
 - Tipografía: **Archivo** en titulares, **Inter** en texto, servidas localmente vía `@fontsource-variable`.
 - Esquinas rectas. Ningún `rounded-*` mayor a `rounded-sm` en superficies estructurales.
 - `prefers-reduced-motion: reduce` desactiva **toda** animación, incluida la rotación del hero 3D.

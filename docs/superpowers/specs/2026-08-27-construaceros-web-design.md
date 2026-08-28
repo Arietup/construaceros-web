@@ -156,6 +156,11 @@ Tomado del logo: negro, gris acero y amarillo dorado.
 El ámbar se usa con avaricia: llamadas a la acción y detalles puntuales. Un
 acento que aparece en todas partes deja de ser un acento.
 
+**Única excepción a la paleta:** los mensajes de error del formulario van en rojo
+(`text-red-400`). El rojo es el único color que un visitante lee como "algo salió mal"
+sin leer las palabras, y el éxito ya ocupa el ámbar: pintar ambos estados del mismo
+color cambiaría comunicación real por coherencia cromática.
+
 ### Tipografía
 
 - Titulares: **Archivo**, condensada e industrial, con tracking cerrado.
