@@ -1,0 +1,108 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Galeria from '../../components/Galeria';
+import { CATEGORIAS, type Categoria } from '../../config';
+
+export async function getStaticPaths() {
+  const obras = await getCollection('obras');
+  return obras.map((obra) => ({ params: { slug: obra.id }, props: { obra } }));
+}
+
+interface Props {
+  obra: CollectionEntry<'obras'>;
+}
+
+const { obra } = Astro.props;
+const { titulo, categoria, ciudad, provincia, anio, cliente, materiales, reto, solucion, portada, galeria } =
+  obra.data;
+const { Content } = await render(obra);
+
+// La isla React recibe URLs ya optimizadas, no los objetos de imagen de Astro.
+const imagenesGaleria = await Promise.all(
+  galeria.map(async (img, i) => ({
+    src: (await getImage({ src: img, width: 1200, format: 'webp' })).src,
+    alt: `${titulo}, imagen ${i + 1}`,
+  })),
+);
+---
+
+<Layout titulo={`${titulo} — ConstruAceros`} descripcion={obra.data.resumen}>
+  <article>
+    <div class="relative h-[60vh] min-h-96">
+      <Image
+        src={portada}
+        alt={`${titulo}, ${ciudad}`}
+        widths={[800, 1600]}
+        sizes="100vw"
+        class="h-full w-full object-cover"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/60 to-transparent"></div>
+
+      <div class="absolute right-0 bottom-0 left-0 mx-auto max-w-7xl px-6 pb-12">
+        <p class="text-sm tracking-[0.25em] text-ambar uppercase">
+          {CATEGORIAS[categoria as Categoria]}
+        </p>
+        <h1 class="mt-3 max-w-4xl text-4xl md:text-6xl">{titulo}</h1>
+      </div>
+    </div>
+
+    <div class="mx-auto grid max-w-7xl gap-14 px-6 py-16 lg:grid-cols-[2fr_1fr]">
+      <div class="space-y-10">
+        <section>
+          <h2 class="text-2xl text-ambar">El reto</h2>
+          <p class="mt-3 leading-relaxed text-acero">{reto}</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl text-ambar">La solución</h2>
+          <p class="mt-3 leading-relaxed text-acero">{solucion}</p>
+        </section>
+
+        <div class="leading-relaxed text-acero"><Content /></div>
+
+        {imagenesGaleria.length > 0 && (
+          <section>
+            <h2 class="mb-5 text-2xl text-ambar">Galería</h2>
+            <Galeria client:visible imagenes={imagenesGaleria} />
+          </section>
+        )}
+      </div>
+
+      <aside class="h-fit border border-white/15 p-7">
+        <dl class="space-y-5 text-sm">
+          <div>
+            <dt class="text-xs tracking-widest text-acero uppercase">Ubicación</dt>
+            <dd class="mt-1 text-humo">{ciudad}, {provincia}</dd>
+          </div>
+          <div>
+            <dt class="text-xs tracking-widest text-acero uppercase">Año</dt>
+            <dd class="mt-1 text-humo">{anio}</dd>
+          </div>
+          {cliente && (
+            <div>
+              <dt class="text-xs tracking-widest text-acero uppercase">Cliente</dt>
+              <dd class="mt-1 text-humo">{cliente}</dd>
+            </div>
+          )}
+          <div>
+            <dt class="text-xs tracking-widest text-acero uppercase">Materiales</dt>
+            <dd class="mt-1 text-humo">
+              <ul class="space-y-1">{materiales.map((m) => <li>{m}</li>)}</ul>
+            </dd>
+          </div>
+        </dl>
+
+        <a href="/#contacto" class="mt-8 block bg-ambar px-6 py-3 text-center font-semibold text-carbon">
+          Quiero algo así
+        </a>
+      </aside>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-6 pb-20">
+      <a href="/obras/" class="text-sm text-acero hover:text-ambar">← Volver a todas las obras</a>
+    </div>
+  </article>
+</Layout>
