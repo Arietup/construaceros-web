@@ -771,7 +771,7 @@ git commit -m "feat: secciones hero, servicios y proceso"
 - Consumes: `EMPRESA`, `CATEGORIAS`, `MENSAJE_WHATSAPP`, `whatsappUrl`, `telefonoUrl`.
 - Produces: `enviarFormulario(datos: Record<string, string>, accessKey: string, f?: typeof fetch): Promise<ResultadoEnvio>` donde `ResultadoEnvio = { ok: true } | { ok: false; error: string }`.
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 Crear `src/lib/formulario.test.ts`:
 
@@ -822,7 +822,7 @@ describe('enviarFormulario', () => {
 });
 ```
 
-- [ ] **Step 2: Correr el test y ver que falla**
+- [x] **Step 2: Correr el test y ver que falla**
 
 ```bash
 npm test
@@ -830,7 +830,7 @@ npm test
 
 Esperado: FALLA con "Failed to resolve import './formulario'".
 
-- [ ] **Step 3: Implementar el envío**
+- [x] **Step 3: Implementar el envío**
 
 Crear `src/lib/formulario.ts`:
 
@@ -869,7 +869,7 @@ export async function enviarFormulario(
 }
 ```
 
-- [ ] **Step 4: Correr el test y ver que pasa**
+- [x] **Step 4: Correr el test y ver que pasa**
 
 ```bash
 npm test
@@ -877,7 +877,7 @@ npm test
 
 Esperado: los 4 tests PASAN.
 
-- [ ] **Step 5: Crear la sección de contacto**
+- [x] **Step 5: Crear la sección de contacto**
 
 Crear `src/components/Contacto.astro`:
 
@@ -1010,7 +1010,7 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
 </script>
 ```
 
-- [ ] **Step 6: Montar en la landing**
+- [x] **Step 6: Montar en la landing**
 
 En `src/pages/index.astro`, añadir el import y el componente después de `<Proceso />`:
 
@@ -1023,7 +1023,7 @@ import Contacto from '../components/Contacto.astro';
   <Contacto />
 ```
 
-- [ ] **Step 7: Verificar y commit**
+- [x] **Step 7: Verificar y commit**
 
 ```bash
 npm test && npm run build
@@ -1044,7 +1044,7 @@ Sin `PUBLIC_WEB3FORMS_KEY` configurada el envío devolverá error, y eso es corr
 - Consumes: proyecto compilable de las Tasks 1-6.
 - Produces: sitio en vivo con redespliegue automático en cada push.
 
-- [ ] **Step 1: Crear la página 404**
+- [x] **Step 1: Crear la página 404**
 
 Crear `src/pages/404.astro`. Render sirve este archivo automáticamente:
 
@@ -1068,7 +1068,7 @@ import Layout from '../layouts/Layout.astro';
 
 El enlace a `/obras/` apunta a una ruta que existe desde la Task 9. Hasta entonces devuelve el propio 404, lo cual es inofensivo.
 
-- [ ] **Step 2: Crear el favicon**
+- [x] **Step 2: Crear el favicon**
 
 Crear `public/favicon.svg`:
 
@@ -1080,7 +1080,7 @@ Crear `public/favicon.svg`:
 </svg>
 ```
 
-- [ ] **Step 3: Crear el blueprint de Render**
+- [x] **Step 3: Crear el blueprint de Render**
 
 Crear `render.yaml`:
 
@@ -1103,7 +1103,7 @@ services:
 
 Sin `routes` de reescritura: Astro genera un archivo HTML real por página y una reescritura comodín rompería el 404.
 
-- [ ] **Step 4: Escribir el README**
+- [x] **Step 4: Escribir el README**
 
 Crear `README.md`:
 
