@@ -1154,14 +1154,14 @@ git remote add origin https://github.com/Arietup/construaceros-web.git
 git push -u origin main
 ```
 
-- [ ] **Step 6: Conectar Render**
+- [x] **Step 6: Conectar Render**
 
 En el panel de Render: **New → Static Site**, conectar el repositorio, y confirmar que detecta `render.yaml`. Si se configura a mano:
 
 - Build Command: `npm ci && npm run build`
 - Publish Directory: `dist`
 
-- [ ] **Step 7: Verificar en producción**
+- [x] **Step 7: Verificar en producción**
 
 Abrir la URL que asigna Render y comprobar: carga con HTTPS, el logo aparece, el menú funciona, el botón de WhatsApp abre la aplicación, y `/una-ruta-inventada` muestra el 404 propio.
 
