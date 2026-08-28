@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import TarjetaObra from './TarjetaObra.astro';
+import { ordenarPorFecha } from '../lib/obras';
+
+const destacadas = ordenarPorFecha(
+  await getCollection('obras', ({ data }) => data.destacada),
+).slice(0, 6);
+---
+
+{destacadas.length > 0 && (
+  <section id="obras" class="mx-auto max-w-7xl px-6 py-24">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <h2 class="text-4xl md:text-5xl">Obras destacadas</h2>
+        <p class="mt-4 max-w-xl text-acero">
+          Una muestra de lo entregado. Cada obra tiene su ficha con el detalle del trabajo.
+        </p>
+      </div>
+      <a href="/obras/" class="border border-acero/40 px-6 py-3 text-sm font-semibold hover:border-ambar hover:text-ambar">
+        Ver todas
+      </a>
+    </div>
+
+    <div class="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {destacadas.map((obra) => <TarjetaObra obra={obra} />)}
+    </div>
+  </section>
+)}
