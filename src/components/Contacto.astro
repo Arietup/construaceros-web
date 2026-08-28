@@ -1,0 +1,126 @@
+---
+import { CATEGORIAS, EMPRESA, MENSAJE_WHATSAPP } from '../config';
+import { telefonoUrl, whatsappUrl } from '../lib/contacto';
+---
+
+<section id="contacto" class="mx-auto max-w-7xl px-6 py-24">
+  <div class="grid gap-16 lg:grid-cols-2">
+    <div>
+      <h2 class="text-4xl md:text-5xl">Conversemos su proyecto</h2>
+      <p class="mt-4 text-acero">
+        Cuéntenos qué necesita. Respondemos con una propuesta clara, sin compromiso.
+      </p>
+
+      <div class="mt-10 space-y-4">
+        <a
+          href={whatsappUrl(EMPRESA.whatsapp, MENSAJE_WHATSAPP)}
+          target="_blank"
+          rel="noopener"
+          class="block border border-white/15 p-5 transition-colors hover:border-ambar"
+        >
+          <span class="block text-xs tracking-widest text-acero uppercase">WhatsApp</span>
+          <span class="mt-1 block text-lg text-humo">{EMPRESA.whatsapp}</span>
+        </a>
+
+        <a
+          href={telefonoUrl(EMPRESA.telefono)}
+          class="block border border-white/15 p-5 transition-colors hover:border-ambar"
+        >
+          <span class="block text-xs tracking-widest text-acero uppercase">Teléfono</span>
+          <span class="mt-1 block text-lg text-humo">{EMPRESA.telefono}</span>
+        </a>
+      </div>
+    </div>
+
+    <form id="form-contacto" class="space-y-5">
+      <div>
+        <label for="nombre" class="mb-2 block text-sm text-acero">Nombre completo</label>
+        <input
+          id="nombre" name="nombre" type="text" required autocomplete="name"
+          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+        />
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label for="telefono" class="mb-2 block text-sm text-acero">Teléfono</label>
+          <input
+            id="telefono" name="telefono" type="tel" required autocomplete="tel"
+            class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+          />
+        </div>
+        <div>
+          <label for="correo" class="mb-2 block text-sm text-acero">Correo</label>
+          <input
+            id="correo" name="correo" type="email" required autocomplete="email"
+            class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="tipo" class="mb-2 block text-sm text-acero">Tipo de trabajo</label>
+        <select
+          id="tipo" name="tipo" required
+          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+        >
+          {Object.entries(CATEGORIAS).map(([valor, texto]) => (
+            <option value={valor}>{texto}</option>
+          ))}
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="mensaje" class="mb-2 block text-sm text-acero">Cuéntenos qué necesita</label>
+        <textarea
+          id="mensaje" name="mensaje" rows="5" required
+          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+        ></textarea>
+      </div>
+
+      <!-- Honeypot: invisible para personas, irresistible para bots. -->
+      <input type="text" name="sitioWeb" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+      <button
+        type="submit"
+        class="w-full bg-ambar px-7 py-4 font-semibold text-carbon transition-opacity hover:opacity-90 disabled:opacity-50"
+      >
+        Enviar mensaje
+      </button>
+
+      <p id="form-estado" role="status" aria-live="polite" class="min-h-6 text-sm"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { enviarFormulario } from '../lib/formulario';
+  import { EMPRESA } from '../config';
+
+  const form = document.getElementById('form-contacto') as HTMLFormElement | null;
+  const estado = document.getElementById('form-estado');
+  const boton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity() || !estado || !boton) return;
+
+    boton.disabled = true;
+    estado.textContent = 'Enviando…';
+    estado.className = 'min-h-6 text-sm text-acero';
+
+    const datos = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    const r = await enviarFormulario(datos, EMPRESA.web3formsKey);
+
+    if (r.ok) {
+      form.reset();
+      estado.textContent = 'Mensaje enviado. Le respondemos a la brevedad.';
+      estado.className = 'min-h-6 text-sm text-ambar';
+    } else {
+      estado.textContent = r.error;
+      estado.className = 'min-h-6 text-sm text-red-400';
+    }
+    boton.disabled = false;
+  });
+</script>
