@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import { EMPRESA } from '../config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BotonWhatsApp from '../components/BotonWhatsApp.astro';
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+}
+
+const { titulo, descripcion = EMPRESA.descripcion } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-EC">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <!-- Marca que hay JavaScript ANTES del primer pintado. El CSS oculta los
+         .reveal solo bajo .js, así que sin JavaScript el contenido siempre se ve. -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="bg-carbon text-humo font-cuerpo antialiased">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-ambar focus:px-4 focus:py-2 focus:text-carbon"
+    >
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="contenido"><slot /></main>
+    <Footer />
+    <BotonWhatsApp />
+  </body>
+</html>
