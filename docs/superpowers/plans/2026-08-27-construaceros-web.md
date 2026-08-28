@@ -58,7 +58,7 @@
 - Consumes: nada.
 - Produces: proyecto Astro que compila con `npm run build`, con Tailwind 4, React y Vitest instalados.
 
-- [ ] **Step 1: Crear el proyecto Astro**
+- [x] **Step 1: Crear el proyecto Astro**
 
 Desde `C:\sistemas\caconstruaceroweb`, con `logo.jpg` y `docs/` ya presentes, se crea el proyecto en el directorio actual:
 
@@ -68,7 +68,7 @@ npm create astro@latest . -- --template minimal --typescript strict --no-install
 
 Si pregunta por el directorio no vacío, confirmar que continúe. `logo.jpg` y `docs/` no se tocan.
 
-- [ ] **Step 2: Instalar dependencias e integraciones**
+- [x] **Step 2: Instalar dependencias e integraciones**
 
 ```bash
 npm install
@@ -78,7 +78,7 @@ npm install three @react-three/fiber @react-three/drei
 npm install -D vitest @types/three
 ```
 
-- [ ] **Step 3: Fijar la versión de Node**
+- [x] **Step 3: Fijar la versión de Node**
 
 Crear `.node-version`:
 
@@ -92,7 +92,7 @@ Y en `package.json` añadir el script de test dentro de `"scripts"`:
 "test": "vitest run"
 ```
 
-- [ ] **Step 4: Configurar Astro**
+- [x] **Step 4: Configurar Astro**
 
 Reemplazar `astro.config.mjs`:
 
@@ -112,7 +112,7 @@ export default defineConfig({
 
 `site` es obligatorio para que el sitemap genere URLs absolutas. Cuando la empresa compre dominio propio, este es el único valor que cambia.
 
-- [ ] **Step 5: Verificar que compila**
+- [x] **Step 5: Verificar que compila**
 
 ```bash
 npm run build
@@ -120,7 +120,7 @@ npm run build
 
 Esperado: termina sin errores y crea `dist/index.html`.
 
-- [ ] **Step 6: Inicializar Git y commit**
+- [x] **Step 6: Inicializar Git y commit**
 
 ```bash
 git init
