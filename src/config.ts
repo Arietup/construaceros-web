@@ -1,12 +1,16 @@
+const ANIO_FUNDACION = 2009;
+
+/** Se recalcula en cada build: la cifra no envejece mal ni hay que acordarse de subirla. */
+export const ANIOS_EXPERIENCIA = new Date().getFullYear() - ANIO_FUNDACION;
+
 export const EMPRESA = {
   nombre: 'ConstruAceros',
   bajada: 'Construcciones en Acero Inoxidable',
-  descripcion:
-    'Más de 20 años fabricando estructuras en acero inoxidable, hierro y vidrio en todo el Ecuador. Obra industrial, residencial y construcción civil.',
+  descripcion: `${ANIOS_EXPERIENCIA} años fabricando estructuras en acero inoxidable, hierro y vidrio en todo el Ecuador. Obra industrial, residencial y construcción civil.`,
   telefono: '+593 99 428 3675',
   whatsapp: '+593 99 428 3675',
   correo: 'caconstruacero@hotmail.com',
-  horario: '08:00 a 18:00',
+  horario: 'Atención: lunes a viernes de 08:00 a 18:00 y sábados de 09:00 a 15:00',
   ciudad: 'Quito',
   pais: 'EC',
   redes: {

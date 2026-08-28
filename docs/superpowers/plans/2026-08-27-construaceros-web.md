@@ -2393,7 +2393,7 @@ git commit -m "feat: SEO, datos estructurados y formulario conectado"
 - Consumes: el sitio ya desplegado.
 - Produces: sitio que cumple los criterios de éxito de la spec.
 
-- [ ] **Step 1: Reemplazar los datos pendientes**
+- [x] **Step 1: Reemplazar los datos pendientes**
 
 Buscar todos los valores sin resolver:
 
@@ -2426,7 +2426,7 @@ Lighthouse no detecta estas cuatro cosas y hay que comprobarlas manualmente:
 
 Abrir la URL en un teléfono con datos móviles, no en el emulador. Comprobar que carga rápido, que el menú es usable y que el botón de WhatsApp abre la aplicación con el mensaje ya escrito.
 
-- [ ] **Step 5: Commit final**
+- [x] **Step 5: Commit final**
 
 ```bash
 npm test && npm run build

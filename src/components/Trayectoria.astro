@@ -1,9 +1,8 @@
 ---
-import { PROVINCIAS_ATENDIDAS } from '../config';
+import { ANIOS_EXPERIENCIA, PROVINCIAS_ATENDIDAS } from '../config';
 
 const cifras = [
-  { valor: 20, sufijo: '+', etiqueta: 'Años de experiencia' },
-  { valor: 150, sufijo: '+', etiqueta: 'Obras entregadas' },
+  { valor: ANIOS_EXPERIENCIA, sufijo: '', etiqueta: 'Años de experiencia' },
   // Derivada de la lista: la cifra y el mapa de cobertura no pueden contradecirse.
   { valor: PROVINCIAS_ATENDIDAS.length, sufijo: '', etiqueta: 'Provincias atendidas' },
   { valor: 100, sufijo: '%', etiqueta: 'Obras con garantía' },
@@ -11,7 +10,7 @@ const cifras = [
 ---
 
 <section class="border-y border-white/10 bg-grafito">
-  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-20 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-20 sm:grid-cols-3">
     {cifras.map((c) => (
       <div class="reveal text-center">
         <p class="font-display text-6xl text-ambar">

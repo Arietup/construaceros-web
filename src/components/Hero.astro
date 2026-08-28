@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { EMPRESA, MENSAJE_WHATSAPP } from '../config';
+import { ANIOS_EXPERIENCIA, EMPRESA, MENSAJE_WHATSAPP } from '../config';
 import { whatsappUrl } from '../lib/contacto';
 import fallback from '../assets/hero-fallback.jpg';
 ---
@@ -25,7 +25,7 @@ import fallback from '../assets/hero-fallback.jpg';
   <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/80 to-transparent"></div>
 
   <div class="relative mx-auto w-full max-w-7xl px-6 pt-24">
-    <p class="mb-5 text-sm tracking-[0.3em] text-ambar uppercase">Más de 20 años en el Ecuador</p>
+    <p class="mb-5 text-sm tracking-[0.3em] text-ambar uppercase">{ANIOS_EXPERIENCIA} años en el Ecuador</p>
 
     <h1 class="max-w-4xl text-5xl leading-[0.95] md:text-7xl">
       Acero que sostiene<br />lo que usted construye
