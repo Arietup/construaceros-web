@@ -1969,7 +1969,7 @@ export type Entorno3D = {
 };
 
 /**
- * Un cliente potencial con datos móviles no puede pagar 600 KB de WebGL.
+ * Un cliente potencial con datos móviles no puede pagar 913 KB de WebGL.
  * Bajo estas condiciones se muestra la imagen de respaldo en su lugar.
  */
 export function permite3D({ ancho, nucleos, movimientoReducido }: Entorno3D): boolean {
@@ -2002,7 +2002,7 @@ Crear `src/components/Hero3D.tsx`. Una pieza metálica con material de acero ino
 
 ```tsx
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { Environment, Lightformer } from '@react-three/drei';
 import { useRef } from 'react';
 import type { Mesh } from 'three';
 
@@ -2025,25 +2025,32 @@ function PiezaAcero() {
   );
 }
 
-export default function Hero3D() {
+export default function Hero3D({ alMontar }: { alMontar?: () => void }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 5.2], fov: 45 }}
       dpr={[1, 1.75]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
+      // Solo cuando hay contexto WebGL de verdad se retira la imagen de respaldo.
+      onCreated={() => alMontar?.()}
     >
       <ambientLight intensity={0.25} />
       <directionalLight position={[4, 5, 3]} intensity={2.2} color="#F2B705" />
       <directionalLight position={[-4, -2, -3]} intensity={1.1} color="#8fa0b5" />
       <PiezaAcero />
-      {/* Los reflejos del entorno son lo que hace que el acero parezca acero. */}
-      <Environment preset="warehouse" />
+      {/* Los reflejos del entorno son lo que hace que el acero parezca acero.
+          Se generan en la escena, sin descargar un HDRI de un CDN ajeno. */}
+      <Environment resolution={256}>
+        <Lightformer intensity={4} position={[0, 3, -4]} scale={[10, 3, 1]} color="#ffffff" />
+        <Lightformer intensity={2} position={[-4, 1, 2]} scale={[6, 6, 1]} color="#F2B705" />
+        <Lightformer intensity={1.5} position={[4, -1, 2]} scale={[6, 6, 1]} color="#8fa0b5" />
+      </Environment>
     </Canvas>
   );
 }
 ```
 
-`dpr` con tope 1.75 en vez del devicePixelRatio nativo: en pantallas Retina la diferencia visual es imperceptible y el costo de render se duplica.
+`dpr` con tope 1.75 en vez del devicePixelRatio nativo: en pantallas Retina la diferencia visual es imperceptible y el costo de render se duplica. El respaldo solo se retira cuando `onCreated` confirma que hay contexto WebGL de verdad — si WebGL no está disponible, el visitante se queda con la imagen de respaldo en vez de un rectángulo negro vacío.
 
 - [x] **Step 6: Añadir la imagen de respaldo**
 
@@ -2088,8 +2095,11 @@ Y añadir al final del archivo:
     ]);
 
     const contenedor = document.getElementById('hero-3d')!;
-    document.getElementById('hero-respaldo')?.remove();
-    createRoot(contenedor).render(createElement(Hero3D));
+    createRoot(contenedor).render(
+      createElement(Hero3D, {
+        alMontar: () => document.getElementById('hero-respaldo')?.remove(),
+      }),
+    );
   }
 </script>
 ```

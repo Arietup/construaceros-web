@@ -5,7 +5,7 @@ export type Entorno3D = {
 };
 
 /**
- * Un cliente potencial con datos móviles no puede pagar 600 KB de WebGL.
+ * Un cliente potencial con datos móviles no puede pagar 913 KB de WebGL.
  * Bajo estas condiciones se muestra la imagen de respaldo en su lugar.
  */
 export function permite3D({ ancho, nucleos, movimientoReducido }: Entorno3D): boolean {

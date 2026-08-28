@@ -59,7 +59,10 @@ import fallback from '../assets/hero-fallback.jpg';
     ]);
 
     const contenedor = document.getElementById('hero-3d')!;
-    document.getElementById('hero-respaldo')?.remove();
-    createRoot(contenedor).render(createElement(Hero3D));
+    createRoot(contenedor).render(
+      createElement(Hero3D, {
+        alMontar: () => document.getElementById('hero-respaldo')?.remove(),
+      }),
+    );
   }
 </script>
