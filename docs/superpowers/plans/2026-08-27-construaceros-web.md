@@ -1281,7 +1281,7 @@ git commit -m "feat: colección de obras con esquema validado y contenido real"
 
 No hay función de filtrado en `src/lib/`: el filtro por categoría ocurre en el navegador ocultando tarjetas ya renderizadas, sin recalcular listas.
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 Crear `src/lib/obras.test.ts`:
 
@@ -1306,7 +1306,7 @@ describe('ordenarPorFecha', () => {
 });
 ```
 
-- [ ] **Step 2: Correr el test y ver que falla**
+- [x] **Step 2: Correr el test y ver que falla**
 
 ```bash
 npm test
@@ -1314,7 +1314,7 @@ npm test
 
 Esperado: FALLA con "Failed to resolve import './obras'".
 
-- [ ] **Step 3: Implementar**
+- [x] **Step 3: Implementar**
 
 Crear `src/lib/obras.ts`:
 
@@ -1326,7 +1326,7 @@ export function ordenarPorFecha<T extends ConAnio>(obras: T[]): T[] {
 }
 ```
 
-- [ ] **Step 4: Correr el test y ver que pasa**
+- [x] **Step 4: Correr el test y ver que pasa**
 
 ```bash
 npm test
@@ -1334,7 +1334,7 @@ npm test
 
 Esperado: los 2 tests PASAN.
 
-- [ ] **Step 5: Crear la tarjeta de obra**
+- [x] **Step 5: Crear la tarjeta de obra**
 
 Crear `src/components/TarjetaObra.astro`:
 
@@ -1374,7 +1374,7 @@ const { titulo, categoria, ciudad, anio, resumen, portada } = obra.data;
 </article>
 ```
 
-- [ ] **Step 6: Crear el índice con filtro**
+- [x] **Step 6: Crear el índice con filtro**
 
 Crear `src/pages/obras/index.astro`. El filtro se resuelve en el navegador ocultando tarjetas, sin recargar la página:
 
@@ -1446,7 +1446,7 @@ const filtros: [string, string][] = [['todas', 'Todas'], ...Object.entries(CATEG
 </script>
 ```
 
-- [ ] **Step 7: Verificar y commit**
+- [x] **Step 7: Verificar y commit**
 
 ```bash
 npm test && npm run build
@@ -1470,7 +1470,7 @@ git commit -m "feat: índice del portafolio con filtro por categoría"
 - Consumes: colección `obras`, `Layout.astro`, `CATEGORIAS`, `Categoria`.
 - Produces: una ruta estática `/obras/<id>/` por cada entrada. `Galeria.tsx` recibe `{ imagenes: { src: string; alt: string }[] }`.
 
-- [ ] **Step 1: Crear la galería con lightbox**
+- [x] **Step 1: Crear la galería con lightbox**
 
 Crear `src/components/Galeria.tsx`. Es isla React porque necesita estado y captura de teclado:
 
@@ -1544,7 +1544,7 @@ export default function Galeria({ imagenes }: { imagenes: Imagen[] }) {
 }
 ```
 
-- [ ] **Step 2: Crear la página de detalle**
+- [x] **Step 2: Crear la página de detalle**
 
 Crear `src/pages/obras/[...slug].astro`:
 
@@ -1659,7 +1659,7 @@ const imagenesGaleria = await Promise.all(
 </Layout>
 ```
 
-- [ ] **Step 3: Verificar**
+- [x] **Step 3: Verificar**
 
 ```bash
 npm run build
@@ -1667,7 +1667,7 @@ npm run build
 
 Esperado: `dist/obras/<slug>/index.html` existe para cada obra. En `npm run dev`, abrir una obra y comprobar que la galería se abre, que `Escape` la cierra y que las flechas cambian de imagen.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -1686,7 +1686,7 @@ git commit -m "feat: página de detalle por obra con galería accesible"
 - Consumes: colección `obras`, `ordenarPorFecha`, `TarjetaObra.astro`.
 - Produces: sección con anclaje `#obras` en la landing.
 
-- [ ] **Step 1: Crear la sección**
+- [x] **Step 1: Crear la sección**
 
 Crear `src/components/ObrasDestacadas.astro`:
 
@@ -1724,7 +1724,7 @@ const destacadas = ordenarPorFecha(
 
 Si ninguna obra está marcada como destacada, la sección no se renderiza. Es preferible a mostrar un hueco vacío.
 
-- [ ] **Step 2: Montar en la landing**
+- [x] **Step 2: Montar en la landing**
 
 En `src/pages/index.astro`, añadir el import y colocar el componente entre `<Servicios />` y `<Proceso />`:
 
@@ -1738,7 +1738,7 @@ import ObrasDestacadas from '../components/ObrasDestacadas.astro';
   <Proceso />
 ```
 
-- [ ] **Step 3: Verificar y commit**
+- [x] **Step 3: Verificar y commit**
 
 ```bash
 npm run build
