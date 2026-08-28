@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Imagen = { src: string; alt: string };
 
 export default function Galeria({ imagenes }: { imagenes: Imagen[] }) {
   const [abierta, setAbierta] = useState<number | null>(null);
+  const dialogo = useRef<HTMLDialogElement>(null);
 
+  // showModal() da foco atrapado, cierre con Escape, fondo inerte y
+  // devolución del foco al disparador. Nada de eso hay que programarlo.
   useEffect(() => {
-    if (abierta === null) return;
-    const alTeclado = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setAbierta(null);
-      if (e.key === 'ArrowRight') setAbierta((i) => (i === null ? null : (i + 1) % imagenes.length));
-      if (e.key === 'ArrowLeft')
-        setAbierta((i) => (i === null ? null : (i - 1 + imagenes.length) % imagenes.length));
-    };
-    window.addEventListener('keydown', alTeclado);
-    return () => window.removeEventListener('keydown', alTeclado);
-  }, [abierta, imagenes.length]);
+    const d = dialogo.current;
+    if (!d) return;
+    if (abierta !== null && !d.open) d.showModal();
+    if (abierta === null && d.open) d.close();
+  }, [abierta]);
+
+  const mover = (paso: number) =>
+    setAbierta((i) => (i === null ? null : (i + paso + imagenes.length) % imagenes.length));
 
   return (
     <>
@@ -38,30 +39,39 @@ export default function Galeria({ imagenes }: { imagenes: Imagen[] }) {
         ))}
       </div>
 
-      {abierta !== null && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Imagen ampliada"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-carbon/95 p-6"
-          onClick={() => setAbierta(null)}
-        >
-          <img
-            src={imagenes[abierta].src}
-            alt={imagenes[abierta].alt}
-            className="max-h-[90vh] max-w-full object-contain"
-          />
-          <button
-            type="button"
-            onClick={() => setAbierta(null)}
-            aria-label="Cerrar"
-            className="absolute top-6 right-6 text-3xl text-humo"
-            autoFocus
-          >
-            ×
-          </button>
-        </div>
-      )}
+      <dialog
+        ref={dialogo}
+        aria-label="Imagen ampliada"
+        // onClose cubre también el Escape del navegador, que no pasa por onClick.
+        onClose={() => setAbierta(null)}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowRight') mover(1);
+          if (e.key === 'ArrowLeft') mover(-1);
+        }}
+        // Clic en el fondo: solo si el objetivo es el propio <dialog>, no su contenido.
+        onClick={(e) => {
+          if (e.target === dialogo.current) setAbierta(null);
+        }}
+        className="max-h-none max-w-none bg-transparent p-0 backdrop:bg-carbon/95"
+      >
+        {abierta !== null && (
+          <div className="flex h-screen w-screen items-center justify-center p-6">
+            <img
+              src={imagenes[abierta].src}
+              alt={imagenes[abierta].alt}
+              className="max-h-[90vh] max-w-full object-contain"
+            />
+            <button
+              type="button"
+              onClick={() => setAbierta(null)}
+              aria-label="Cerrar"
+              className="absolute top-6 right-6 text-3xl text-humo"
+            >
+              ×
+            </button>
+          </div>
+        )}
+      </dialog>
     </>
   );
 }
