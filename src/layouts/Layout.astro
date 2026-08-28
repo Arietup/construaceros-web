@@ -36,5 +36,8 @@ const { titulo, descripcion = EMPRESA.descripcion } = Astro.props;
     <main id="contenido"><slot /></main>
     <Footer />
     <BotonWhatsApp />
+    <script>
+      import '../scripts/movimiento';
+    </script>
   </body>
 </html>

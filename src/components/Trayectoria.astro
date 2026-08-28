@@ -1,0 +1,21 @@
+---
+const cifras = [
+  { valor: 20, sufijo: '+', etiqueta: 'Años de experiencia' },
+  { valor: 150, sufijo: '+', etiqueta: 'Obras entregadas' },
+  { valor: 12, sufijo: '', etiqueta: 'Provincias atendidas' },
+  { valor: 100, sufijo: '%', etiqueta: 'Obras con garantía' },
+];
+---
+
+<section class="border-y border-white/10 bg-grafito">
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-20 sm:grid-cols-2 lg:grid-cols-4">
+    {cifras.map((c) => (
+      <div class="reveal text-center">
+        <p class="font-display text-6xl text-ambar">
+          <span data-contador={c.valor}>0</span>{c.sufijo}
+        </p>
+        <p class="mt-2 text-sm tracking-widest text-acero uppercase">{c.etiqueta}</p>
+      </div>
+    ))}
+  </div>
+</section>

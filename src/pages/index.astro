@@ -1,17 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import Trayectoria from '../components/Trayectoria.astro';
 import Servicios from '../components/Servicios.astro';
 import ObrasDestacadas from '../components/ObrasDestacadas.astro';
 import Proceso from '../components/Proceso.astro';
+import Cobertura from '../components/Cobertura.astro';
 import Contacto from '../components/Contacto.astro';
 import { EMPRESA } from '../config';
 ---
 
 <Layout titulo={`${EMPRESA.nombre} — ${EMPRESA.bajada}`}>
   <Hero />
+  <Trayectoria />
   <Servicios />
   <ObrasDestacadas />
   <Proceso />
+  <Cobertura />
   <Contacto />
 </Layout>
