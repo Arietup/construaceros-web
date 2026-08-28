@@ -1,1 +1,79 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@import '@fontsource-variable/archivo';
+@import '@fontsource-variable/inter';
+
+@theme {
+  --color-carbon: #0b0b0c;
+  --color-grafito: #16181b;
+  --color-acero: #c7cbd1;
+  --color-humo: #f4f5f7;
+  --color-ambar: #f2b705;
+
+  --font-display: 'Archivo Variable', system-ui, sans-serif;
+  --font-cuerpo: 'Inter Variable', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-carbon);
+    color: var(--color-humo);
+    font-family: var(--font-cuerpo);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  /* Foco visible en todo elemento interactivo. No se elimina nunca. */
+  :focus-visible {
+    outline: 2px solid var(--color-ambar);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Reveal al entrar en viewport. `.reveal-visible` la agrega el observer de la Task 12.
+     El ocultamiento se aplica SOLO bajo `.js`, que el layout marca en el <head> si hay
+     JavaScript: sin JS nada se oculta nunca y el contenido siempre es legible. */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 700ms ease-out, transform 700ms ease-out;
+  }
+
+  .js .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Grano sutil sobre fondos oscuros. */
+  .grano::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Regla global: quien pide menos movimiento no recibe ninguno. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
