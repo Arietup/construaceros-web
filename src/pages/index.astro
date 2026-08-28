@@ -1,10 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Servicios from '../components/Servicios.astro';
+import Proceso from '../components/Proceso.astro';
 import { EMPRESA } from '../config';
 ---
 
 <Layout titulo={`${EMPRESA.nombre} — ${EMPRESA.bajada}`}>
-  <div class="pt-32 pb-24 text-center">
-    <h1 class="text-5xl">{EMPRESA.nombre}</h1>
-  </div>
+  <Hero />
+  <Servicios />
+  <Proceso />
 </Layout>

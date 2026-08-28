@@ -1,0 +1,28 @@
+---
+const pasos = [
+  { n: '01', titulo: 'Visita y medición', texto: 'Vamos al sitio, medimos y entendemos qué necesita. Sin costo.' },
+  { n: '02', titulo: 'Diseño y propuesta', texto: 'Le presentamos el diseño y una propuesta con materiales y plazos por escrito.' },
+  { n: '03', titulo: 'Fabricación', texto: 'Fabricamos en taller propio, con control de cada pieza antes de salir.' },
+  { n: '04', titulo: 'Instalación', texto: 'Instalamos con nuestro equipo y dejamos el sitio limpio.' },
+  { n: '05', titulo: 'Garantía', texto: 'Respondemos por el trabajo entregado. Si algo falla, volvemos.' },
+];
+---
+
+<section id="proceso" class="border-y border-white/10 bg-grafito">
+  <div class="mx-auto max-w-7xl px-6 py-24">
+    <h2 class="text-4xl md:text-5xl">Cómo trabajamos</h2>
+    <p class="mt-4 max-w-2xl text-acero">
+      Si nunca ha contratado una obra en acero, así se ve el proceso completo de principio a fin.
+    </p>
+
+    <ol class="mt-14 grid gap-8 md:grid-cols-3 lg:grid-cols-5">
+      {pasos.map((p) => (
+        <li class="reveal border-t-2 border-ambar pt-5">
+          <span class="font-display text-3xl text-ambar">{p.n}</span>
+          <h3 class="mt-2 text-lg text-humo">{p.titulo}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-acero">{p.texto}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

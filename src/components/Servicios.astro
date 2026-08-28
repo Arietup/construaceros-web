@@ -1,0 +1,41 @@
+---
+const servicios = [
+  {
+    titulo: 'Acero inoxidable',
+    texto:
+      'Pasamanos, barandas, puertas, mesones y mobiliario industrial. Acabado pulido o satinado, resistente a la intemperie de la costa y la sierra.',
+  },
+  {
+    titulo: 'Estructuras en hierro',
+    texto:
+      'Galpones, cubiertas, escaleras, portones y estructura metálica para obra industrial y residencial.',
+  },
+  {
+    titulo: 'Vidrio templado',
+    texto:
+      'Fachadas, divisiones, barandas de vidrio con anclaje en acero y puertas templadas con herrajes de alta resistencia.',
+  },
+  {
+    titulo: 'Construcción civil',
+    texto:
+      'Mausoleos, casas, edificios y departamentos. Obra completa, desde el diseño hasta la entrega.',
+  },
+];
+---
+
+<section id="servicios" class="mx-auto max-w-7xl px-6 py-24">
+  <h2 class="text-4xl md:text-5xl">Lo que hacemos</h2>
+  <p class="mt-4 max-w-2xl text-acero">
+    Cuatro líneas de trabajo, un solo equipo. Nos encargamos del diseño, la fabricación y la
+    instalación, sin subcontratar la parte crítica.
+  </p>
+
+  <div class="mt-14 grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-4">
+    {servicios.map((s) => (
+      <article class="reveal bg-carbon p-8 transition-colors hover:bg-grafito">
+        <h3 class="text-xl text-humo">{s.titulo}</h3>
+        <p class="mt-3 text-sm leading-relaxed text-acero">{s.texto}</p>
+      </article>
+    ))}
+  </div>
+</section>

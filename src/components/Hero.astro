@@ -1,0 +1,38 @@
+---
+import { EMPRESA, MENSAJE_WHATSAPP } from '../config';
+import { whatsappUrl } from '../lib/contacto';
+---
+
+<section class="grano relative flex min-h-[92vh] items-center overflow-hidden bg-carbon">
+  <!-- La Task 13 monta aquí la escena WebGL y su imagen de respaldo. -->
+  <div id="hero-3d" class="absolute inset-0" aria-hidden="true"></div>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/80 to-transparent"></div>
+
+  <div class="relative mx-auto w-full max-w-7xl px-6 pt-24">
+    <p class="mb-5 text-sm tracking-[0.3em] text-ambar uppercase">Más de 20 años en el Ecuador</p>
+
+    <h1 class="max-w-4xl text-5xl leading-[0.95] md:text-7xl">
+      Acero que sostiene<br />lo que usted construye
+    </h1>
+
+    <p class="mt-6 max-w-xl text-lg text-acero">
+      Acero inoxidable, estructuras en hierro, vidrio templado y construcción civil.
+      Diseño, fabricación e instalación en todo el país.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href="/obras/" class="bg-ambar px-7 py-3 font-semibold text-carbon transition-opacity hover:opacity-90">
+        Ver nuestras obras
+      </a>
+      <a
+        href={whatsappUrl(EMPRESA.whatsapp, MENSAJE_WHATSAPP)}
+        target="_blank"
+        rel="noopener"
+        class="border border-acero/40 px-7 py-3 font-semibold text-humo transition-colors hover:border-ambar hover:text-ambar"
+      >
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
