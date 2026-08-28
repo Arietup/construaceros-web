@@ -2422,7 +2422,7 @@ Lighthouse no detecta estas cuatro cosas y hay que comprobarlas manualmente:
 - El formulario se puede completar y enviar sin usar el mouse.
 - Con "Reducir movimiento" activo no queda ninguna animación en pie, incluido el hero.
 
-- [ ] **Step 4: Verificar el sitio en un celular real**
+- [x] **Step 4: Verificar el sitio en un celular real**
 
 Abrir la URL en un teléfono con datos móviles, no en el emulador. Comprobar que carga rápido, que el menú es usable y que el botón de WhatsApp abre la aplicación con el mensaje ya escrito.
 

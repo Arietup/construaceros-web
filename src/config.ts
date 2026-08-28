@@ -3,11 +3,10 @@ export const EMPRESA = {
   bajada: 'Construcciones en Acero Inoxidable',
   descripcion:
     'Más de 20 años fabricando estructuras en acero inoxidable, hierro y vidrio en todo el Ecuador. Obra industrial, residencial y construcción civil.',
-  telefono: 'PENDIENTE:+593000000000',
-  whatsapp: 'PENDIENTE:+593000000000',
-  correo: 'PENDIENTE:correo@construaceros.ec',
-  direccion: 'PENDIENTE:dirección',
-  horario: 'PENDIENTE:Lunes a viernes, 08:00 a 17:00',
+  telefono: '+593 99 428 3675',
+  whatsapp: '+593 99 428 3675',
+  correo: 'caconstruacero@hotmail.com',
+  horario: '08:00 a 18:00',
   ciudad: 'Quito',
   pais: 'EC',
   redes: {
