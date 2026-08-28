@@ -458,7 +458,7 @@ import logo from '../assets/logo.jpg';
 <header class="fixed top-0 z-40 w-full border-b border-white/10 bg-carbon/85 backdrop-blur">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3">
     <a href="/" class="flex items-center gap-3" aria-label={`${EMPRESA.nombre}, inicio`}>
-      <Image src={logo} alt={`Logotipo de ${EMPRESA.nombre}`} width={160} height={72} loading="eager" />
+      <Image src={logo} alt={`Logotipo de ${EMPRESA.nombre}`} width={160} height={72} loading="eager" densities={[1, 2]} />
     </a>
 
     <nav class="hidden items-center gap-8 md:flex" aria-label="Principal">
@@ -501,8 +501,8 @@ const anio = new Date().getFullYear();
 
     <div class="text-sm text-acero">
       <p class="mb-3 font-semibold text-humo">Contacto</p>
-      <p><a class="hover:text-humo" href={telefonoUrl(EMPRESA.telefono)}>{EMPRESA.telefono}</a></p>
-      <p><a class="hover:text-humo" href={`mailto:${EMPRESA.correo}`}>{EMPRESA.correo}</a></p>
+      <p><a class="inline-block py-1.5 hover:text-humo" href={telefonoUrl(EMPRESA.telefono)}>{EMPRESA.telefono}</a></p>
+      <p><a class="inline-block py-1.5 hover:text-humo" href={`mailto:${EMPRESA.correo}`}>{EMPRESA.correo}</a></p>
       <p class="mt-2">{EMPRESA.direccion}</p>
       <p>{EMPRESA.horario}</p>
     </div>
@@ -517,7 +517,7 @@ const anio = new Date().getFullYear();
     <p>© {anio} {EMPRESA.nombre}. Todos los derechos reservados.</p>
     <p class="mt-1">
       Desarrollado por
-      <a class="text-ambar hover:underline" href="https://github.com/Arietup" target="_blank" rel="noopener">
+      <a class="text-ambar underline" href="https://github.com/Arietup" target="_blank" rel="noopener">
         Dario Estupiñán
       </a>
     </p>

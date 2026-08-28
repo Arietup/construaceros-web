@@ -13,8 +13,8 @@ const anio = new Date().getFullYear();
 
     <div class="text-sm text-acero">
       <p class="mb-3 font-semibold text-humo">Contacto</p>
-      <p><a class="hover:text-humo" href={telefonoUrl(EMPRESA.telefono)}>{EMPRESA.telefono}</a></p>
-      <p><a class="hover:text-humo" href={`mailto:${EMPRESA.correo}`}>{EMPRESA.correo}</a></p>
+      <p><a class="inline-block py-1.5 hover:text-humo" href={telefonoUrl(EMPRESA.telefono)}>{EMPRESA.telefono}</a></p>
+      <p><a class="inline-block py-1.5 hover:text-humo" href={`mailto:${EMPRESA.correo}`}>{EMPRESA.correo}</a></p>
       <p class="mt-2">{EMPRESA.direccion}</p>
       <p>{EMPRESA.horario}</p>
     </div>
@@ -29,7 +29,7 @@ const anio = new Date().getFullYear();
     <p>© {anio} {EMPRESA.nombre}. Todos los derechos reservados.</p>
     <p class="mt-1">
       Desarrollado por
-      <a class="text-ambar hover:underline" href="https://github.com/Arietup" target="_blank" rel="noopener">
+      <a class="text-ambar underline" href="https://github.com/Arietup" target="_blank" rel="noopener">
         Dario Estupiñán
       </a>
     </p>
