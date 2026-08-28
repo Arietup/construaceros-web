@@ -6,9 +6,10 @@ import fallback from '../assets/hero-fallback.jpg';
 ---
 
 <section class="grano relative flex min-h-[92vh] items-center overflow-hidden bg-carbon">
-  <div id="hero-3d" class="absolute inset-0" aria-hidden="true">
+  <!-- El respaldo vive FUERA del contenedor de React: createRoot vacia su
+       contenedor al montar, y ahi se perderia antes de saber si hay WebGL. -->
+  <div id="hero-respaldo" class="absolute inset-0" aria-hidden="true">
     <Image
-      id="hero-respaldo"
       src={fallback}
       alt=""
       widths={[800, 1600]}
@@ -17,6 +18,9 @@ import fallback from '../assets/hero-fallback.jpg';
       loading="eager"
     />
   </div>
+
+  <!-- Vacio a proposito: la Task 13 monta aqui la escena WebGL. -->
+  <div id="hero-3d" class="absolute inset-0" aria-hidden="true"></div>
 
   <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/80 to-transparent"></div>
 

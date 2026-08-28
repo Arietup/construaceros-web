@@ -2050,7 +2050,7 @@ export default function Hero3D({ alMontar }: { alMontar?: () => void }) {
 }
 ```
 
-`dpr` con tope 1.75 en vez del devicePixelRatio nativo: en pantallas Retina la diferencia visual es imperceptible y el costo de render se duplica. El respaldo solo se retira cuando `onCreated` confirma que hay contexto WebGL de verdad — si WebGL no está disponible, el visitante se queda con la imagen de respaldo en vez de un rectángulo negro vacío.
+`dpr` con tope 1.75 en vez del devicePixelRatio nativo: en pantallas Retina la diferencia visual es imperceptible y el costo de render se duplica. El respaldo solo se retira cuando `onCreated` confirma que hay contexto WebGL de verdad.
 
 - [x] **Step 6: Añadir la imagen de respaldo**
 
@@ -2065,12 +2065,17 @@ import { Image } from 'astro:assets';
 import fallback from '../assets/hero-fallback.jpg';
 ```
 
-Reemplazar el `<div id="hero-3d">` vacío por el bloque con respaldo:
+Reemplazar el `<div id="hero-3d">` vacío por dos divs **hermanos**: el respaldo
+vive fuera del contenedor que React va a gobernar, porque `createRoot(...).render(...)`
+vacía su contenedor en el primer commit (`root.textContent = ''`, antes de
+cualquier layout effect) — si la imagen estuviera dentro, React la borraría al
+montar sin importar lo que diga `onCreated`:
 
 ```astro
-  <div id="hero-3d" class="absolute inset-0" aria-hidden="true">
+  <!-- El respaldo vive FUERA del contenedor de React: createRoot vacia su
+       contenedor al montar, y ahi se perderia antes de saber si hay WebGL. -->
+  <div id="hero-respaldo" class="absolute inset-0" aria-hidden="true">
     <Image
-      id="hero-respaldo"
       src={fallback}
       alt=""
       widths={[800, 1600]}
@@ -2079,6 +2084,9 @@ Reemplazar el `<div id="hero-3d">` vacío por el bloque con respaldo:
       loading="eager"
     />
   </div>
+
+  <!-- Vacio a proposito: la Task 13 monta aqui la escena WebGL. -->
+  <div id="hero-3d" class="absolute inset-0" aria-hidden="true"></div>
 ```
 
 Y añadir al final del archivo:
