@@ -1770,7 +1770,7 @@ git commit -m "feat: sección de obras destacadas en la landing"
 - Consumes: las clases `.reveal` / `.reveal-visible` de la Task 2, ya presentes en `Servicios.astro`, `Proceso.astro` y `TarjetaObra.astro`.
 - Produces: script global que activa reveals y contadores. Los contadores se marcan con `data-contador="<número>"`.
 
-- [ ] **Step 1: Escribir el script de movimiento**
+- [x] **Step 1: Escribir el script de movimiento**
 
 Crear `src/scripts/movimiento.ts`:
 
@@ -1804,10 +1804,9 @@ function activarReveals() {
 function activarContadores() {
   const contadores = document.querySelectorAll<HTMLElement>('[data-contador]');
 
-  if (sinMovimiento) {
-    contadores.forEach((el) => (el.textContent = el.dataset.contador!));
-    return;
-  }
+  // El HTML ya trae el valor real: sin JavaScript el numero es correcto.
+  // Aqui solo se anima, y solo lo que el visitante todavia no ha visto.
+  if (sinMovimiento) return;
 
   const observer = new IntersectionObserver(
     (entradas) => {
@@ -1817,6 +1816,8 @@ function activarContadores() {
         observer.unobserve(el);
 
         const destino = Number(el.dataset.contador);
+        if (!Number.isFinite(destino)) return; // dato invalido: se queda el texto del HTML
+
         const duracion = 1400;
         const inicio = performance.now();
 
@@ -1832,14 +1833,21 @@ function activarContadores() {
     { threshold: 0.5 },
   );
 
-  contadores.forEach((el) => observer.observe(el));
+  contadores.forEach((el) => {
+    // Solo se reinicia a cero lo que esta por debajo del pliegue. Lo que ya
+    // se ve conserva su valor final: evita el salto de "20" a "0" en pantalla.
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      el.textContent = '0';
+      observer.observe(el);
+    }
+  });
 }
 
 activarReveals();
 activarContadores();
 ```
 
-- [ ] **Step 2: Cargar el script en el layout**
+- [x] **Step 2: Cargar el script en el layout**
 
 En `src/layouts/Layout.astro`, justo antes de `</body>`:
 
@@ -1851,7 +1859,7 @@ En `src/layouts/Layout.astro`, justo antes de `</body>`:
   </body>
 ```
 
-- [ ] **Step 3: Crear la sección de trayectoria**
+- [x] **Step 3: Crear la sección de trayectoria**
 
 Crear `src/components/Trayectoria.astro`. Las cifras se reemplazan por las reales en la Task 16:
 
@@ -1870,7 +1878,7 @@ const cifras = [
     {cifras.map((c) => (
       <div class="reveal text-center">
         <p class="font-display text-6xl text-ambar">
-          <span data-contador={c.valor}>0</span>{c.sufijo}
+          <span data-contador={c.valor}>{c.valor}</span>{c.sufijo}
         </p>
         <p class="mt-2 text-sm tracking-widest text-acero uppercase">{c.etiqueta}</p>
       </div>
@@ -1879,11 +1887,11 @@ const cifras = [
 </section>
 ```
 
-- [ ] **Step 4: Montar en la landing**
+- [x] **Step 4: Montar en la landing**
 
 En `src/pages/index.astro`, importar `Trayectoria` y colocarla justo después de `<Hero />`.
 
-- [ ] **Step 5: Verificar el comportamiento reducido**
+- [x] **Step 5: Verificar el comportamiento reducido**
 
 ```bash
 npm run dev
@@ -1891,7 +1899,7 @@ npm run dev
 
 Comprobar que los contadores suben al llegar a la sección. Luego activar "Reducir movimiento" en el sistema operativo, recargar, y confirmar que las cifras aparecen ya en su valor final sin animarse y que las secciones se ven sin desvanecido.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 npm run build
@@ -2118,7 +2126,7 @@ git commit -m "feat: hero 3D en WebGL con respaldo para dispositivos limitados"
 - Consumes: `PROVINCIAS_ATENDIDAS` de `src/config.ts`.
 - Produces: sección con el listado de provincias.
 
-- [ ] **Step 1: Añadir las provincias a la configuración**
+- [x] **Step 1: Añadir las provincias a la configuración**
 
 En `src/config.ts`, añadir. Los valores se ajustan a los reales en la Task 16:
 
@@ -2135,7 +2143,7 @@ export const PROVINCIAS_ATENDIDAS = [
 ] as const;
 ```
 
-- [ ] **Step 2: Crear la sección**
+- [x] **Step 2: Crear la sección**
 
 Crear `src/components/Cobertura.astro`. Se implementa como listado y no como mapa SVG: un mapa provincial de Ecuador correcto pesa más de 100 KB de trazados y aporta menos que la lista de nombres, que además es legible por lector de pantalla y por buscadores.
 
@@ -2166,11 +2174,11 @@ import { PROVINCIAS_ATENDIDAS } from '../config';
 </section>
 ```
 
-- [ ] **Step 3: Montar en la landing**
+- [x] **Step 3: Montar en la landing**
 
 En `src/pages/index.astro`, importar `Cobertura` y colocarla entre `<Proceso />` y `<Contacto />`.
 
-- [ ] **Step 4: Verificar y commit**
+- [x] **Step 4: Verificar y commit**
 
 ```bash
 npm run build

@@ -12,7 +12,7 @@ const cifras = [
     {cifras.map((c) => (
       <div class="reveal text-center">
         <p class="font-display text-6xl text-ambar">
-          <span data-contador={c.valor}>0</span>{c.sufijo}
+          <span data-contador={c.valor}>{c.valor}</span>{c.sufijo}
         </p>
         <p class="mt-2 text-sm tracking-widest text-acero uppercase">{c.etiqueta}</p>
       </div>

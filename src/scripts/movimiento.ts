@@ -27,10 +27,9 @@ function activarReveals() {
 function activarContadores() {
   const contadores = document.querySelectorAll<HTMLElement>('[data-contador]');
 
-  if (sinMovimiento) {
-    contadores.forEach((el) => (el.textContent = el.dataset.contador!));
-    return;
-  }
+  // El HTML ya trae el valor real: sin JavaScript el numero es correcto.
+  // Aqui solo se anima, y solo lo que el visitante todavia no ha visto.
+  if (sinMovimiento) return;
 
   const observer = new IntersectionObserver(
     (entradas) => {
@@ -40,6 +39,8 @@ function activarContadores() {
         observer.unobserve(el);
 
         const destino = Number(el.dataset.contador);
+        if (!Number.isFinite(destino)) return; // dato invalido: se queda el texto del HTML
+
         const duracion = 1400;
         const inicio = performance.now();
 
@@ -55,7 +56,14 @@ function activarContadores() {
     { threshold: 0.5 },
   );
 
-  contadores.forEach((el) => observer.observe(el));
+  contadores.forEach((el) => {
+    // Solo se reinicia a cero lo que esta por debajo del pliegue. Lo que ya
+    // se ve conserva su valor final: evita el salto de "20" a "0" en pantalla.
+    if (el.getBoundingClientRect().top > window.innerHeight) {
+      el.textContent = '0';
+      observer.observe(el);
+    }
+  });
 }
 
 activarReveals();
