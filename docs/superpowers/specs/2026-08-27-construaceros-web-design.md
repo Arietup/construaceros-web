@@ -49,7 +49,7 @@ cliente.
 
 | Pieza | Elección | Razón |
 |---|---|---|
-| Framework | Astro 5 | Genera HTML real; el JavaScript se limita a las islas que lo necesitan |
+| Framework | Astro 7 | Genera HTML real; el JavaScript se limita a las islas que lo necesitan |
 | Estilos | Tailwind CSS 4 (vía `@tailwindcss/vite`) | Requisito del cliente |
 | Lenguaje | TypeScript | Valida el contenido en tiempo de build |
 | 3D | React Three Fiber + drei, en isla React | Único punto donde se carga React |

@@ -6,7 +6,7 @@
 
 **Architecture:** Sitio estático Astro sin backend. El HTML se genera en build; React solo se hidrata en dos islas (hero 3D y galería). Las obras viven como Markdown en una content collection validada por esquema, y cada una genera su propia página. El formulario envía a Web3Forms desde el navegador, lo que mantiene el sitio 100 % estático y elimina el cold start del plan gratuito de Render.
 
-**Tech Stack:** Astro 5, Tailwind CSS 4, TypeScript, React Three Fiber + drei, Vitest, Web3Forms, Render Static Site.
+**Tech Stack:** Astro 7, Tailwind CSS 4, TypeScript, React Three Fiber + drei, Vitest, Web3Forms, Render Static Site.
 
 **Spec:** `docs/superpowers/specs/2026-08-27-construaceros-web-design.md`
 
@@ -1112,7 +1112,7 @@ Sitio de ConstruAceros — construcciones en acero inoxidable, hierro y vidrio e
 
 ## Stack
 
-Astro 5 · Tailwind CSS 4 · TypeScript · React Three Fiber · Vitest · Render Static Site
+Astro 7 · Tailwind CSS 4 · TypeScript · React Three Fiber · Vitest · Render Static Site
 
 ## Desarrollo
 
