@@ -36,7 +36,7 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
       <div>
         <label for="nombre" class="mb-2 block text-sm text-acero">Nombre completo</label>
         <input
-          id="nombre" name="nombre" type="text" required autocomplete="name"
+          id="nombre" name="name" type="text" required autocomplete="name"
           class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
         />
       </div>
@@ -52,7 +52,7 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
         <div>
           <label for="correo" class="mb-2 block text-sm text-acero">Correo</label>
           <input
-            id="correo" name="correo" type="email" required autocomplete="email"
+            id="correo" name="email" type="email" required autocomplete="email"
             class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
           />
         </div>
@@ -74,10 +74,13 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
       <div>
         <label for="mensaje" class="mb-2 block text-sm text-acero">Cuéntenos qué necesita</label>
         <textarea
-          id="mensaje" name="mensaje" rows="5" required
+          id="mensaje" name="message" rows="5" required
           class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
         ></textarea>
       </div>
+
+      <!-- Web3Forms usa `subject` como asunto del correo; sin esto llega uno genérico. -->
+      <input type="hidden" name="subject" value="Nuevo mensaje desde la web de ConstruAceros" />
 
       <!-- Honeypot: invisible para personas, irresistible para bots. -->
       <input type="text" name="sitioWeb" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />

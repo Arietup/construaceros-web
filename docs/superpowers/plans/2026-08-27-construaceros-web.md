@@ -2357,7 +2357,7 @@ Allow: /
 Sitemap: https://construaceros-web.onrender.com/sitemap-index.xml
 ```
 
-- [ ] **Step 6: Conectar el formulario de verdad**
+- [x] **Step 6: Conectar el formulario de verdad**
 
 Crear la cuenta en web3forms.com con el correo de la empresa, obtener la access key y crear `.env` en la raíz:
 
