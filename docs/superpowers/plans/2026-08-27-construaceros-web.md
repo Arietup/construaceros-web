@@ -2403,7 +2403,7 @@ grep -rn "PENDIENTE:" src/
 
 Reemplazar cada uno con el dato real que entregue el cliente. Ninguno debe sobrevivir a esta tarea. Ajustar también las cifras de `Trayectoria.astro` y la lista de `PROVINCIAS_ATENDIDAS` a los valores reales.
 
-- [ ] **Step 2: Correr Lighthouse**
+- [x] **Step 2: Correr Lighthouse**
 
 Sobre la URL de Render, no en local: el build local no mide la latencia de la CDN ni la compresión real.
 
@@ -2413,7 +2413,7 @@ npx lighthouse https://construaceros-web.onrender.com --view
 
 Objetivo: 90 o más en las cuatro categorías en móvil. Si Rendimiento no llega, el sospechoso es siempre el peso de las fotografías; revisar que todas pasen por `astro:assets` y que ninguna portada supere los 1600 px de ancho.
 
-- [ ] **Step 3: Revisar accesibilidad a mano**
+- [x] **Step 3: Revisar accesibilidad a mano**
 
 Lighthouse no detecta estas cuatro cosas y hay que comprobarlas manualmente:
 

@@ -1,8 +1,11 @@
 ---
+import { PROVINCIAS_ATENDIDAS } from '../config';
+
 const cifras = [
   { valor: 20, sufijo: '+', etiqueta: 'Años de experiencia' },
   { valor: 150, sufijo: '+', etiqueta: 'Obras entregadas' },
-  { valor: 12, sufijo: '', etiqueta: 'Provincias atendidas' },
+  // Derivada de la lista: la cifra y el mapa de cobertura no pueden contradecirse.
+  { valor: PROVINCIAS_ATENDIDAS.length, sufijo: '', etiqueta: 'Provincias atendidas' },
   { valor: 100, sufijo: '%', etiqueta: 'Obras con garantía' },
 ];
 ---
