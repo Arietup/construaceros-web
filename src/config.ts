@@ -36,3 +36,14 @@ export const CATEGORIAS = {
 } as const;
 
 export type Categoria = keyof typeof CATEGORIAS;
+
+export const PROVINCIAS_ATENDIDAS = [
+  'Pichincha',
+  'Guayas',
+  'Azuay',
+  'Manabí',
+  'Tungurahua',
+  'Imbabura',
+  'Santo Domingo',
+  'Los Ríos',
+] as const;

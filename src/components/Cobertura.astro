@@ -1,0 +1,24 @@
+---
+import { PROVINCIAS_ATENDIDAS } from '../config';
+---
+
+<section class="mx-auto max-w-7xl px-6 py-24">
+  <div class="grid gap-14 lg:grid-cols-2">
+    <div>
+      <h2 class="text-4xl md:text-5xl">Trabajamos en todo el Ecuador</h2>
+      <p class="mt-4 max-w-xl text-acero">
+        Nos movilizamos a la obra donde esté. Estas son las provincias donde ya hemos entregado
+        trabajos, y la lista sigue creciendo.
+      </p>
+      <a href="/#contacto" class="mt-8 inline-block bg-ambar px-7 py-3 font-semibold text-carbon">
+        Consultar por mi ciudad
+      </a>
+    </div>
+
+    <ul class="grid grid-cols-2 gap-px self-start bg-white/10 sm:grid-cols-3">
+      {PROVINCIAS_ATENDIDAS.map((p) => (
+        <li class="reveal bg-carbon px-4 py-5 text-center text-sm text-acero">{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
