@@ -21,9 +21,9 @@ const { Content } = await render(obra);
 
 // La isla React recibe URLs ya optimizadas, no los objetos de imagen de Astro.
 const imagenesGaleria = await Promise.all(
-  galeria.map(async (img, i) => ({
-    src: (await getImage({ src: img, width: 1200, format: 'webp' })).src,
-    alt: `${titulo}, imagen ${i + 1}`,
+  galeria.map(async (img) => ({
+    src: (await getImage({ src: img.src, width: 1200, format: 'webp' })).src,
+    alt: img.alt,
   })),
 );
 

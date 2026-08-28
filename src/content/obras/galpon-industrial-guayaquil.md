@@ -18,8 +18,10 @@ solucion: >-
   para cumplir el plazo.
 portada: ../../assets/obras/galpon-industrial-guayaquil/portada.jpg
 galeria:
-  - ../../assets/obras/galpon-industrial-guayaquil/01.jpg
-  - ../../assets/obras/galpon-industrial-guayaquil/02.jpg
+  - src: ../../assets/obras/galpon-industrial-guayaquil/01.jpg
+    alt: Pórticos de acero de veinte metros de luz ya montados sobre la cimentación de la nave.
+  - src: ../../assets/obras/galpon-industrial-guayaquil/02.jpg
+    alt: Interior del galpón terminado, libre de columnas intermedias, bajo la cubierta termoacústica.
 destacada: true
 ---
 

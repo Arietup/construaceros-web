@@ -27,7 +27,7 @@ export default function Galeria({ imagenes }: { imagenes: Imagen[] }) {
             type="button"
             onClick={() => setAbierta(i)}
             className="aspect-[4/3] overflow-hidden bg-grafito"
-            aria-label={`Ampliar imagen ${i + 1} de ${imagenes.length}`}
+            aria-label={`Ampliar: ${img.alt}`}
           >
             <img
               src={img.src}

@@ -37,7 +37,7 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
         <label for="nombre" class="mb-2 block text-sm text-acero">Nombre completo</label>
         <input
           id="nombre" name="nombre" type="text" required autocomplete="name"
-          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
         />
       </div>
 
@@ -46,14 +46,14 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
           <label for="telefono" class="mb-2 block text-sm text-acero">Teléfono</label>
           <input
             id="telefono" name="telefono" type="tel" required autocomplete="tel"
-            class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+            class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
           />
         </div>
         <div>
           <label for="correo" class="mb-2 block text-sm text-acero">Correo</label>
           <input
             id="correo" name="correo" type="email" required autocomplete="email"
-            class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+            class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
           />
         </div>
       </div>
@@ -62,7 +62,7 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
         <label for="tipo" class="mb-2 block text-sm text-acero">Tipo de trabajo</label>
         <select
           id="tipo" name="tipo" required
-          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
         >
           {Object.entries(CATEGORIAS).map(([valor, texto]) => (
             <option value={valor}>{texto}</option>
@@ -75,7 +75,7 @@ import { telefonoUrl, whatsappUrl } from '../lib/contacto';
         <label for="mensaje" class="mb-2 block text-sm text-acero">Cuéntenos qué necesita</label>
         <textarea
           id="mensaje" name="mensaje" rows="5" required
-          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar focus:outline-none"
+          class="w-full border border-white/15 bg-grafito px-4 py-3 text-humo focus:border-ambar"
         ></textarea>
       </div>
 

@@ -18,8 +18,10 @@ solucion: >-
   sin perder el segundo nivel interior.
 portada: ../../assets/obras/mausoleo-familiar-ambato/portada.jpg
 galeria:
-  - ../../assets/obras/mausoleo-familiar-ambato/01.jpg
-  - ../../assets/obras/mausoleo-familiar-ambato/02.jpg
+  - src: ../../assets/obras/mausoleo-familiar-ambato/01.jpg
+    alt: Estructura de acero del mausoleo armada sobre la base de hormigón nivelada en la pendiente.
+  - src: ../../assets/obras/mausoleo-familiar-ambato/02.jpg
+    alt: Fachada terminada del mausoleo con revestimiento de granito gris y puerta de herrería forjada.
 destacada: false
 ---
 

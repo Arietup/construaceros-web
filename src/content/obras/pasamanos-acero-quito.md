@@ -16,8 +16,10 @@ solucion: >-
   con un sistema de anclaje oculto en el canto de la grada.
 portada: ../../assets/obras/pasamanos-acero-quito/portada.jpg
 galeria:
-  - ../../assets/obras/pasamanos-acero-quito/01.jpg
-  - ../../assets/obras/pasamanos-acero-quito/02.jpg
+  - src: ../../assets/obras/pasamanos-acero-quito/01.jpg
+    alt: Tramo curvo del pasamanos de acero inoxidable satinado siguiendo el radio del descanso.
+  - src: ../../assets/obras/pasamanos-acero-quito/02.jpg
+    alt: Detalle del anclaje oculto del pasamanos en el canto de la grada de mármol.
 destacada: true
 ---
 

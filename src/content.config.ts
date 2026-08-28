@@ -16,7 +16,7 @@ const obras = defineCollection({
       reto: z.string(),
       solucion: z.string(),
       portada: image(),
-      galeria: z.array(image()).default([]),
+      galeria: z.array(z.object({ src: image(), alt: z.string() })).default([]),
       destacada: z.boolean().default(false),
     }),
 });
