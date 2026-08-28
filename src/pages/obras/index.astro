@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TarjetaObra from '../../components/TarjetaObra.astro';
+import { ordenarPorFecha } from '../../lib/obras';
+import { CATEGORIAS } from '../../config';
+
+const obras = ordenarPorFecha(await getCollection('obras'));
+const filtros: [string, string][] = [['todas', 'Todas'], ...Object.entries(CATEGORIAS)];
+---
+
+<Layout
+  titulo="Obras realizadas — ConstruAceros"
+  descripcion="Portafolio de trabajos en acero inoxidable, hierro, vidrio y construcción civil realizados en todo el Ecuador."
+>
+  <section class="mx-auto max-w-7xl px-6 pt-36 pb-24">
+    <h1 class="text-5xl md:text-6xl">Obras realizadas</h1>
+    <p class="mt-4 max-w-2xl text-acero">
+      Cada trabajo entregado, con el detalle de lo que se resolvió.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-3" role="group" aria-label="Filtrar obras por categoría">
+      {filtros.map(([valor, texto]) => (
+        <button
+          type="button"
+          data-filtro={valor}
+          aria-pressed={valor === 'todas'}
+          class="border border-white/15 px-4 py-2 text-sm text-acero transition-colors aria-pressed:border-ambar aria-pressed:bg-ambar aria-pressed:text-carbon"
+        >
+          {texto}
+        </button>
+      ))}
+    </div>
+
+    <div id="grid-obras" class="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+      {obras.map((obra) => <TarjetaObra obra={obra} />)}
+    </div>
+
+    <p id="sin-obras" class="mt-12 hidden text-acero">
+      Todavía no hay obras publicadas en esta categoría.
+    </p>
+  </section>
+</Layout>
+
+<script>
+  const botones = document.querySelectorAll<HTMLButtonElement>('[data-filtro]');
+  const tarjetas = document.querySelectorAll<HTMLElement>('#grid-obras [data-categoria]');
+  const aviso = document.getElementById('sin-obras');
+
+  botones.forEach((boton) => {
+    boton.addEventListener('click', () => {
+      const filtro = boton.dataset.filtro!;
+      botones.forEach((b) => b.setAttribute('aria-pressed', String(b === boton)));
+
+      let visibles = 0;
+      tarjetas.forEach((t) => {
+        const mostrar = filtro === 'todas' || t.dataset.categoria === filtro;
+        t.hidden = !mostrar;
+        if (mostrar) visibles++;
+      });
+
+      aviso?.classList.toggle('hidden', visibles > 0);
+    });
+  });
+</script>
