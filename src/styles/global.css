@@ -17,6 +17,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Compensa el header fijo (~96px) para que los anclajes no queden tapados. */
+    scroll-padding-top: 6.5rem;
     background-color: var(--color-carbon);
     color: var(--color-humo);
     font-family: var(--font-cuerpo);

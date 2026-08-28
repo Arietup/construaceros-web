@@ -165,6 +165,8 @@ Reemplazar `src/styles/global.css`:
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Compensa el header fijo (~96px) para que los anclajes no queden tapados. */
+    scroll-padding-top: 6.5rem;
     background-color: var(--color-carbon);
     color: var(--color-humo);
     font-family: var(--font-cuerpo);
@@ -383,7 +385,7 @@ git commit -m "feat: configuración central de la empresa y helpers de contacto"
 - Consumes: `EMPRESA`, `NAV`, `MENSAJE_WHATSAPP` de `src/config.ts`; `whatsappUrl`, `telefonoUrl` de `src/lib/contacto.ts`.
 - Produces: `Layout.astro` con props `{ titulo: string; descripcion?: string }` y un `<slot />`. Lo usan todas las páginas de las Tasks 5, 7, 9 y 10. La Task 15 le añade las props `imagen` y `jsonLd`. También marca la clase `.js` en `<html>`, de la que depende el CSS de reveals de la Task 2.
 
-- [ ] **Step 0: Mover el logotipo dentro de `src/`**
+- [x] **Step 0: Mover el logotipo dentro de `src/`**
 
 ```bash
 mkdir -p src/assets
@@ -392,7 +394,7 @@ git mv logo.jpg src/assets/logo.jpg
 
 `astro:assets` está pensado para imágenes bajo `src/`, y es donde el resto del plan guarda las suyas.
 
-- [ ] **Step 1: Crear el layout**
+- [x] **Step 1: Crear el layout**
 
 Crear `src/layouts/Layout.astro`:
 
@@ -441,7 +443,7 @@ const { titulo, descripcion = EMPRESA.descripcion } = Astro.props;
 
 El enlace "Saltar al contenido" no es opcional: sin él, quien navega por teclado atraviesa el menú entero en cada página.
 
-- [ ] **Step 2: Crear el header**
+- [x] **Step 2: Crear el header**
 
 Crear `src/components/Header.astro`:
 
@@ -479,7 +481,7 @@ import logo from '../assets/logo.jpg';
 </header>
 ```
 
-- [ ] **Step 3: Crear el footer**
+- [x] **Step 3: Crear el footer**
 
 Crear `src/components/Footer.astro`:
 
@@ -523,7 +525,7 @@ const anio = new Date().getFullYear();
 </footer>
 ```
 
-- [ ] **Step 4: Crear el botón flotante**
+- [x] **Step 4: Crear el botón flotante**
 
 Crear `src/components/BotonWhatsApp.astro`:
 
@@ -548,7 +550,7 @@ import { whatsappUrl } from '../lib/contacto';
 
 Excepción deliberada a la regla de esquinas rectas: el botón flotante de WhatsApp se reconoce por su forma circular, y romperla lo vuelve menos identificable.
 
-- [ ] **Step 5: Conectar la página de inicio**
+- [x] **Step 5: Conectar la página de inicio**
 
 Reemplazar `src/pages/index.astro`:
 
@@ -565,7 +567,7 @@ import { EMPRESA } from '../config';
 </Layout>
 ```
 
-- [ ] **Step 6: Verificar en el navegador**
+- [x] **Step 6: Verificar en el navegador**
 
 ```bash
 npm run dev
@@ -573,7 +575,7 @@ npm run dev
 
 Comprobar en `http://localhost:4321`: logo visible, menú en escritorio, botón de WhatsApp abajo a la derecha, y que al pulsar Tab aparece "Saltar al contenido" antes que cualquier otro enlace.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 npm run build
@@ -593,7 +595,7 @@ git commit -m "feat: layout base con header, footer y WhatsApp flotante"
 - Consumes: `Layout.astro`, `EMPRESA`, `MENSAJE_WHATSAPP`, `whatsappUrl`.
 - Produces: `Hero.astro` con un `<div id="hero-3d">` vacío que la Task 13 rellena con la isla WebGL. Las secciones exponen los anclajes `#servicios` y `#proceso` que usa `NAV`.
 
-- [ ] **Step 1: Crear el hero estático**
+- [x] **Step 1: Crear el hero estático**
 
 Crear `src/components/Hero.astro`. Por ahora el contenedor 3D queda vacío; la Task 13 monta la escena sin tocar esta estructura:
 
@@ -638,7 +640,7 @@ import { whatsappUrl } from '../lib/contacto';
 </section>
 ```
 
-- [ ] **Step 2: Crear la sección de servicios**
+- [x] **Step 2: Crear la sección de servicios**
 
 Crear `src/components/Servicios.astro`:
 
@@ -686,7 +688,7 @@ const servicios = [
 </section>
 ```
 
-- [ ] **Step 3: Crear la sección de proceso**
+- [x] **Step 3: Crear la sección de proceso**
 
 Crear `src/components/Proceso.astro`:
 
@@ -721,7 +723,7 @@ const pasos = [
 </section>
 ```
 
-- [ ] **Step 4: Montar las secciones en la landing**
+- [x] **Step 4: Montar las secciones en la landing**
 
 Reemplazar `src/pages/index.astro`:
 
@@ -741,7 +743,7 @@ import { EMPRESA } from '../config';
 </Layout>
 ```
 
-- [ ] **Step 5: Verificar**
+- [x] **Step 5: Verificar**
 
 ```bash
 npm run build
@@ -749,7 +751,7 @@ npm run build
 
 Esperado: build verde. Revisar en `npm run dev` que los anclajes `#servicios` y `#proceso` del menú saltan a la sección correcta.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add -A
