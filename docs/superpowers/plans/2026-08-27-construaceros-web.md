@@ -1180,7 +1180,7 @@ Abrir la URL que asigna Render y comprobar: carga con HTTPS, el logo aparece, el
 - Consumes: nada.
 - Produces: colección `obras` consultable con `getCollection('obras')`. Cada entrada tiene `.id` (el slug del archivo) y `.data` con los campos del esquema. La usan las Tasks 9, 10, 11 y 15.
 
-- [ ] **Step 1: Definir el esquema**
+- [x] **Step 1: Definir el esquema**
 
 Crear `src/content.config.ts`:
 
@@ -1213,11 +1213,11 @@ export const collections = { obras };
 
 El esquema es la validación: si una obra queda sin `reto` o sin `portada`, el build falla y nunca se publica una ficha a medias.
 
-- [ ] **Step 2: Cargar las fotos reales**
+- [x] **Step 2: Cargar las fotos reales**
 
 Copiar las fotografías a `src/assets/obras/<slug>/`, una carpeta por obra. Deben ir en `src/assets/`, no en `public/`: solo desde ahí `astro:assets` genera AVIF/WebP y `srcset`.
 
-- [ ] **Step 3: Crear la primera obra**
+- [x] **Step 3: Crear la primera obra**
 
 Crear `src/content/obras/pasamanos-acero-quito.md`, ajustando los valores a la obra real:
 
@@ -1250,7 +1250,7 @@ Trabajo completo de fabricación e instalación, entregado en tres semanas.
 
 Repetir para cada obra con material disponible. Marcar `destacada: true` en las tres o cuatro mejores.
 
-- [ ] **Step 4: Verificar la validación**
+- [x] **Step 4: Verificar la validación**
 
 ```bash
 npm run build
@@ -1258,7 +1258,7 @@ npm run build
 
 Esperado: build verde. Para comprobar que el esquema realmente protege, borrar temporalmente la línea `reto:` de una obra, correr `npm run build`, confirmar que **falla** indicando el campo faltante, y restaurarla.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
