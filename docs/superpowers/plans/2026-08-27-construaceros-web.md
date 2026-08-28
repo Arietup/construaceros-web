@@ -1143,7 +1143,7 @@ npm run build    # genera dist/
 Documentadas en `docs/superpowers/specs/2026-08-27-construaceros-web-design.md`.
 ````
 
-- [ ] **Step 5: Publicar en GitHub**
+- [x] **Step 5: Publicar en GitHub**
 
 El repositorio `construaceros-web` debe existir y estar vacío.
 
