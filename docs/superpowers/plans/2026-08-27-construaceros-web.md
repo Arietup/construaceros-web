@@ -141,7 +141,7 @@ git commit -m "chore: andamiaje Astro 5 con Tailwind 4, React y Vitest"
 - Consumes: Tailwind 4 desde Task 1.
 - Produces: clases `bg-carbon`, `text-humo`, `text-acero`, `bg-ambar`, `bg-grafito`, `font-display`, `font-cuerpo`, y las utilidades `.reveal` / `.reveal-visible` que consumen las Tasks 5, 9 y 12.
 
-- [ ] **Step 1: Escribir los tokens**
+- [x] **Step 1: Escribir los tokens**
 
 Reemplazar `src/styles/global.css`:
 
@@ -227,7 +227,7 @@ Reemplazar `src/styles/global.css`:
 }
 ```
 
-- [ ] **Step 2: Verificar**
+- [x] **Step 2: Verificar**
 
 ```bash
 npm run build
@@ -235,7 +235,7 @@ npm run build
 
 Esperado: build verde. El CSS todavía no se usa en ninguna página; se conecta en la Task 4.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/styles/global.css
@@ -259,7 +259,7 @@ git commit -m "feat: tokens de diseño, tipografía y utilidades de movimiento"
   - `MENSAJE_WHATSAPP`, `NAV`, `CATEGORIAS`, `type Categoria`
   - Los consumen las Tasks 4, 5, 6, 7, 9, 10, 14 y 15.
 
-- [ ] **Step 1: Escribir el test**
+- [x] **Step 1: Escribir el test**
 
 Crear `src/lib/contacto.test.ts`:
 
@@ -286,7 +286,7 @@ describe('telefonoUrl', () => {
 });
 ```
 
-- [ ] **Step 2: Correr el test y ver que falla**
+- [x] **Step 2: Correr el test y ver que falla**
 
 ```bash
 npm test
@@ -294,7 +294,7 @@ npm test
 
 Esperado: FALLA con "Failed to resolve import './contacto'".
 
-- [ ] **Step 3: Implementar los helpers**
+- [x] **Step 3: Implementar los helpers**
 
 Crear `src/lib/contacto.ts`:
 
@@ -310,7 +310,7 @@ export function telefonoUrl(numero: string): string {
 }
 ```
 
-- [ ] **Step 4: Correr el test y ver que pasa**
+- [x] **Step 4: Correr el test y ver que pasa**
 
 ```bash
 npm test
@@ -318,7 +318,7 @@ npm test
 
 Esperado: 3 tests PASAN.
 
-- [ ] **Step 5: Escribir la configuración central**
+- [x] **Step 5: Escribir la configuración central**
 
 Crear `src/config.ts`. Los valores con prefijo `PENDIENTE:` son los que el cliente aún no entrega; se reemplazan sin tocar ningún componente:
 
@@ -332,7 +332,7 @@ export const EMPRESA = {
   whatsapp: 'PENDIENTE:+593000000000',
   correo: 'PENDIENTE:correo@construaceros.ec',
   direccion: 'PENDIENTE:dirección',
-  horario: 'Lunes a viernes, 08:00 a 17:00',
+  horario: 'PENDIENTE:Lunes a viernes, 08:00 a 17:00',
   ciudad: 'Quito',
   pais: 'EC',
   redes: {
@@ -363,7 +363,7 @@ export const CATEGORIAS = {
 export type Categoria = keyof typeof CATEGORIAS;
 ```
 
-- [ ] **Step 6: Verificar y commit**
+- [x] **Step 6: Verificar y commit**
 
 ```bash
 npm test && npm run build
@@ -2262,7 +2262,6 @@ const jsonLd = {
     addressCountry: EMPRESA.pais,
   },
   areaServed: { '@type': 'Country', name: 'Ecuador' },
-  openingHours: 'Mo-Fr 08:00-17:00',
 };
 ```
 

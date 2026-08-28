@@ -7,7 +7,7 @@ export const EMPRESA = {
   whatsapp: 'PENDIENTE:+593000000000',
   correo: 'PENDIENTE:correo@construaceros.ec',
   direccion: 'PENDIENTE:dirección',
-  horario: 'Lunes a viernes, 08:00 a 17:00',
+  horario: 'PENDIENTE:Lunes a viernes, 08:00 a 17:00',
   ciudad: 'Quito',
   pais: 'EC',
   redes: {
