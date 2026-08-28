@@ -1920,7 +1920,7 @@ git commit -m "feat: reveals de scroll y contadores con movimiento reducido resp
 - Consumes: el contenedor `#hero-3d` creado en la Task 5.
 - Produces: `permite3D(entorno: Entorno3D): boolean` y `entornoActual(): Entorno3D`, con `Entorno3D = { ancho: number; nucleos: number; movimientoReducido: boolean }`.
 
-- [ ] **Step 1: Escribir el test de la decisión**
+- [x] **Step 1: Escribir el test de la decisión**
 
 Crear `src/lib/render3d.test.ts`:
 
@@ -1949,7 +1949,7 @@ describe('permite3D', () => {
 });
 ```
 
-- [ ] **Step 2: Correr el test y ver que falla**
+- [x] **Step 2: Correr el test y ver que falla**
 
 ```bash
 npm test
@@ -1957,7 +1957,7 @@ npm test
 
 Esperado: FALLA con "Failed to resolve import './render3d'".
 
-- [ ] **Step 3: Implementar la decisión**
+- [x] **Step 3: Implementar la decisión**
 
 Crear `src/lib/render3d.ts`:
 
@@ -1988,7 +1988,7 @@ export function entornoActual(): Entorno3D {
 }
 ```
 
-- [ ] **Step 4: Correr el test y ver que pasa**
+- [x] **Step 4: Correr el test y ver que pasa**
 
 ```bash
 npm test
@@ -1996,7 +1996,7 @@ npm test
 
 Esperado: los 4 tests PASAN.
 
-- [ ] **Step 5: Crear la escena**
+- [x] **Step 5: Crear la escena**
 
 Crear `src/components/Hero3D.tsx`. Una pieza metálica con material de acero inoxidable que rota lentamente y responde al scroll:
 
@@ -2045,11 +2045,11 @@ export default function Hero3D() {
 
 `dpr` con tope 1.75 en vez del devicePixelRatio nativo: en pantallas Retina la diferencia visual es imperceptible y el costo de render se duplica.
 
-- [ ] **Step 6: Añadir la imagen de respaldo**
+- [x] **Step 6: Añadir la imagen de respaldo**
 
 Guardar en `src/assets/hero-fallback.jpg` una fotografía en horizontal de una obra en acero, con el mismo encuadre y tono oscuro que la escena 3D.
 
-- [ ] **Step 7: Montar la escena condicionalmente**
+- [x] **Step 7: Montar la escena condicionalmente**
 
 En `src/components/Hero.astro`, añadir el import de la imagen en el frontmatter:
 
@@ -2096,7 +2096,7 @@ Y añadir al final del archivo:
 
 Se monta a mano en lugar de usar `client:visible` porque la condición depende de valores que solo existen en el navegador. Así el bundle de React y Three ni siquiera se descarga cuando la respuesta es negativa.
 
-- [ ] **Step 8: Verificar los dos caminos**
+- [x] **Step 8: Verificar los dos caminos**
 
 ```bash
 npm run dev
@@ -2106,7 +2106,7 @@ npm run dev
 - En las herramientas de desarrollo, emular un móvil y recargar: aparece la foto de respaldo y en la pestaña Network **no** se descarga `three`.
 - Con movimiento reducido activo: aparece la foto de respaldo.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 npm test && npm run build

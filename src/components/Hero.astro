@@ -1,11 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import { EMPRESA, MENSAJE_WHATSAPP } from '../config';
 import { whatsappUrl } from '../lib/contacto';
+import fallback from '../assets/hero-fallback.jpg';
 ---
 
 <section class="grano relative flex min-h-[92vh] items-center overflow-hidden bg-carbon">
-  <!-- La Task 13 monta aquí la escena WebGL y su imagen de respaldo. -->
-  <div id="hero-3d" class="absolute inset-0" aria-hidden="true"></div>
+  <div id="hero-3d" class="absolute inset-0" aria-hidden="true">
+    <Image
+      id="hero-respaldo"
+      src={fallback}
+      alt=""
+      widths={[800, 1600]}
+      sizes="100vw"
+      class="h-full w-full object-cover opacity-60"
+      loading="eager"
+    />
+  </div>
 
   <div class="absolute inset-0 bg-gradient-to-r from-carbon via-carbon/80 to-transparent"></div>
 
@@ -36,3 +47,19 @@ import { whatsappUrl } from '../lib/contacto';
     </div>
   </div>
 </section>
+
+<script>
+  import { entornoActual, permite3D } from '../lib/render3d';
+
+  if (permite3D(entornoActual())) {
+    const [{ createRoot }, { createElement }, { default: Hero3D }] = await Promise.all([
+      import('react-dom/client'),
+      import('react'),
+      import('./Hero3D'),
+    ]);
+
+    const contenedor = document.getElementById('hero-3d')!;
+    document.getElementById('hero-respaldo')?.remove();
+    createRoot(contenedor).render(createElement(Hero3D));
+  }
+</script>
