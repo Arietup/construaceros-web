@@ -2218,7 +2218,7 @@ git commit -m "feat: sección de cobertura nacional"
 - Consumes: `EMPRESA`, `Astro.site`, `Astro.url`.
 - Produces: `Seo.astro` con props `{ titulo: string; descripcion: string; imagen?: string; jsonLd?: Record<string, unknown> }`, usado por `Layout.astro`.
 
-- [ ] **Step 1: Crear el componente SEO**
+- [x] **Step 1: Crear el componente SEO**
 
 Crear `src/components/Seo.astro`:
 
@@ -2255,7 +2255,7 @@ const imagenAbsoluta = imagen ? new URL(imagen, Astro.site).href : undefined;
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 ```
 
-- [ ] **Step 2: Conectar el layout**
+- [x] **Step 2: Conectar el layout**
 
 En `src/layouts/Layout.astro`, ampliar las props y sustituir las etiquetas de título y descripción por el componente:
 
@@ -2281,7 +2281,7 @@ En el `<head>`, reemplazar `<title>{titulo}</title>` y `<meta name="description"
     <Seo titulo={titulo} descripcion={descripcion} imagen={imagen} jsonLd={jsonLd} />
 ```
 
-- [ ] **Step 3: Añadir LocalBusiness a la landing**
+- [x] **Step 3: Añadir LocalBusiness a la landing**
 
 En el frontmatter de `src/pages/index.astro`:
 
@@ -2309,7 +2309,7 @@ Y pasarlo al layout:
 <Layout titulo={`${EMPRESA.nombre} — ${EMPRESA.bajada}`} jsonLd={jsonLd}>
 ```
 
-- [ ] **Step 4: Añadir Service a cada obra**
+- [x] **Step 4: Añadir Service a cada obra**
 
 En `src/pages/obras/[...slug].astro`, después de calcular `imagenesGaleria`:
 
@@ -2338,7 +2338,7 @@ Y ampliar la llamada al layout:
 >
 ```
 
-- [ ] **Step 5: Crear robots.txt**
+- [x] **Step 5: Crear robots.txt**
 
 Crear `public/robots.txt`:
 
@@ -2359,7 +2359,7 @@ PUBLIC_WEB3FORMS_KEY=la-llave-recibida
 
 Confirmar que `.gitignore` incluye `.env` (el andamiaje de Astro ya lo agrega; si no, añadirlo). Registrar la misma variable en Render, en Environment del servicio.
 
-- [ ] **Step 7: Verificar**
+- [x] **Step 7: Verificar**
 
 ```bash
 npm run build
@@ -2367,7 +2367,7 @@ npm run build
 
 Comprobar que `dist/sitemap-index.xml` existe y que `dist/index.html` contiene el bloque `application/ld+json`. Enviar el formulario en `npm run dev` y confirmar que el correo llega.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A

@@ -1,0 +1,30 @@
+---
+import { EMPRESA } from '../config';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  imagen?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { titulo, descripcion, imagen, jsonLd } = Astro.props;
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const imagenAbsoluta = imagen ? new URL(imagen, Astro.site).href : undefined;
+---
+
+<title>{titulo}</title>
+<meta name="description" content={descripcion} />
+<link rel="canonical" href={canonica} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={EMPRESA.nombre} />
+<meta property="og:locale" content="es_EC" />
+<meta property="og:title" content={titulo} />
+<meta property="og:description" content={descripcion} />
+<meta property="og:url" content={canonica} />
+{imagenAbsoluta && <meta property="og:image" content={imagenAbsoluta} />}
+
+<meta name="twitter:card" content={imagenAbsoluta ? 'summary_large_image' : 'summary'} />
+
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

@@ -4,13 +4,16 @@ import { EMPRESA } from '../config';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BotonWhatsApp from '../components/BotonWhatsApp.astro';
+import Seo from '../components/Seo.astro';
 
 interface Props {
   titulo: string;
   descripcion?: string;
+  imagen?: string;
+  jsonLd?: Record<string, unknown>;
 }
 
-const { titulo, descripcion = EMPRESA.descripcion } = Astro.props;
+const { titulo, descripcion = EMPRESA.descripcion, imagen, jsonLd } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,11 +22,10 @@ const { titulo, descripcion = EMPRESA.descripcion } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>{titulo}</title>
-    <meta name="description" content={descripcion} />
     <!-- Marca que hay JavaScript ANTES del primer pintado. El CSS oculta los
          .reveal solo bajo .js, así que sin JavaScript el contenido siempre se ve. -->
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <Seo titulo={titulo} descripcion={descripcion} imagen={imagen} jsonLd={jsonLd} />
   </head>
   <body class="bg-carbon text-humo font-cuerpo antialiased">
     <a

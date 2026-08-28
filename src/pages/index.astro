@@ -8,9 +8,25 @@ import Proceso from '../components/Proceso.astro';
 import Cobertura from '../components/Cobertura.astro';
 import Contacto from '../components/Contacto.astro';
 import { EMPRESA } from '../config';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: EMPRESA.nombre,
+  description: EMPRESA.descripcion,
+  telephone: EMPRESA.telefono,
+  email: EMPRESA.correo,
+  url: Astro.site?.href,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: EMPRESA.ciudad,
+    addressCountry: EMPRESA.pais,
+  },
+  areaServed: { '@type': 'Country', name: 'Ecuador' },
+};
 ---
 
-<Layout titulo={`${EMPRESA.nombre} — ${EMPRESA.bajada}`}>
+<Layout titulo={`${EMPRESA.nombre} — ${EMPRESA.bajada}`} jsonLd={jsonLd}>
   <Hero />
   <Trayectoria />
   <Servicios />

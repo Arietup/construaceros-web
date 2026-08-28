@@ -26,9 +26,26 @@ const imagenesGaleria = await Promise.all(
     alt: `${titulo}, imagen ${i + 1}`,
   })),
 );
+
+const portadaOg = await getImage({ src: portada, width: 1200, format: 'jpeg' });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: titulo,
+  description: obra.data.resumen,
+  serviceType: CATEGORIAS[categoria as Categoria],
+  provider: { '@type': 'LocalBusiness', name: 'ConstruAceros' },
+  areaServed: { '@type': 'City', name: ciudad },
+};
 ---
 
-<Layout titulo={`${titulo} — ConstruAceros`} descripcion={obra.data.resumen}>
+<Layout
+  titulo={`${titulo} — ConstruAceros`}
+  descripcion={obra.data.resumen}
+  imagen={portadaOg.src}
+  jsonLd={jsonLd}
+>
   <article>
     <div class="relative h-[60vh] min-h-96">
       <Image
